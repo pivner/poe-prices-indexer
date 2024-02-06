@@ -3,14 +3,18 @@ import json
 import getter
 
 def main():
-    r = 0
-    while (r==0):
+    r = None
+    while (r==None):
         l = input("League:")
-        t = input("Item:")
-        r = json.loads(getter.currency(l,t).text)
-    flipvalue = [((r["lines"][i]["chaosEquivalent"]-r["lines"][i]["receive"]["value"]),(r["lines"][i]["detailsId"])) for i in range(len(r["lines"]))]
-    flipvalue.sort()
-    flipvalue.reverse()
-    for i in flipvalue:
-        print(i)
+        t = input("Item Type:")
+        r = getter.fetch(l,getter.filter(t))
+    c = json.loads(r[0].text)
+    if r[1]:
+        flipvalue = [((c["lines"][i]["chaosEquivalent"]-c["lines"][i]["receive"]["value"]),(c["lines"][i]["detailsId"])) for i in range(len(c["lines"]))]
+        flipvalue.sort()
+        flipvalue.reverse()
+        for i in flipvalue:
+            print(i)
+    else:
+        pass
 main()
