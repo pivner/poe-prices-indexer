@@ -2,12 +2,7 @@ import requests
 import json
 
 def filter(strinput):
-    if strinput == "Currency" or strinput == "Fragment":
-        return(strinput,True)
-        print("1")
-    else:
-        print("1")
-        return(strinput,False)
+        return(strinput,True) if strinput == "Currency" or strinput == "Fragment" else (strinput,False)
 def fetch(league, trade):
     if trade[1]:
         try:
