@@ -1,7 +1,7 @@
 # Poe Prices Indexer
 ### Simpler Price Scanning
 
-Checks [poe.ninja](https://poe.ninja/) for price changes and determines the value of the item based on how much the item increases or decreases.
+Checks [poe.ninja](https://poe.ninja/) for price changes and determines the value of the item based on how much the item's value increases or decreases.
 Uses the [poe.ninja](https://poe.ninja/) trade api. Sorts value from highest to lowest.
 
 
