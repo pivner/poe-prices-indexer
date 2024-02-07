@@ -3,6 +3,7 @@ import json
 
 def filter(strinput):
         return(strinput,True) if strinput == "Currency" or strinput == "Fragment" else (strinput,False)
+
 def fetch(league, trade):
     if trade[1]:
         try:

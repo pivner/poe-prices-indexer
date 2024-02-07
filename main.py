@@ -2,6 +2,7 @@ import requests
 import json
 import getter
 import printcolor
+import math
 
 def main():
     r = None
@@ -9,16 +10,15 @@ def main():
         r = getter.fetch(input("League:"),getter.filter(input("Item Type:")))
     c = json.loads(r[0].text)
     if r[1]:
-        flipvalue = [((l["chaosEquivalent"]-l["receive"]["value"])) for l in c["lines"]]
+        output = [(((l["chaosEquivalent"]-l["receive"]["value"])),(l["detailsId"])) for l in c["lines"]]
     else:
-        flipvalue = [(l["chaosValue"])+(l["chaosValue"])*(l["sparkline"]["totalChange"]/100) for l in c["lines"]]
-    names = [(c["lines"][i]["detailsId"]) for i in range(len(c["lines"]))]
-    flipvalue.sort()
-    flipvalue.reverse()
-    for i in range(len(flipvalue)):
-        if flipvalue[i]>0:
-            print(printcolor.colors.blue, flipvalue[i],end="")
+        output = [((l["chaosValue"])*(l["sparkline"]["totalChange"]/100),(l["detailsId"])) for l in c["lines"]]
+    output.sort()
+    output.reverse()
+    for i in range(len(output)):
+        if output[i][0]>0:
+            print(printcolor.colors.blue, round(output[i][0], 4),end="")
         else:
-            print(printcolor.colors.red, flipvalue[i],end="")
-        print(printcolor.colors.pink, names[i],end="\n")
+            print(printcolor.colors.red, round(output[i][0], 4),end="")
+        print(printcolor.colors.pink, output[i][1],end="\n")
 main()
