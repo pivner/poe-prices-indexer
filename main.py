@@ -1,7 +1,7 @@
 import json
 import getter
 import printcolor
-
+#main function
 def main():
     r = None
     while (r==None):
