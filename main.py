@@ -1,8 +1,6 @@
-import requests
 import json
 import getter
 import printcolor
-import math
 
 def main():
     r = None
